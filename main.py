@@ -43,7 +43,7 @@ def send_email(subject, body, to_email, from_email, password, smtp_server, smtp_
 
 # Configurações do e-mail
 from_email = "daniel@redeabrigo.org"  # Endereço de e-mail do remetente
-password = "qydj rgyb ugao gsew"  # Senha de aplicativo
+password = "XXXXX"  # Senha de aplicativo ( por favor me pedir a senha para os testes, deixei oculta pois o repositorio esta publico)
 smtp_server = "smtp.gmail.com"  # Servidor SMTP do Gmail
 smtp_port = 587  # Porta do servidor SMTP (587 para TLS)
 
