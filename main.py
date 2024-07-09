@@ -25,7 +25,7 @@ def send_email(subject, body, to_email, from_email, password, smtp_server, smtp_
 
 def main():
     from_email = "daniel@redeabrigo.org"
-    password = "qydj rgyb ugao gsew"
+    password = "XXXXXX"
     smtp_server = "smtp.gmail.com"
     smtp_port = 587
 
