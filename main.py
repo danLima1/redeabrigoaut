@@ -23,7 +23,7 @@ def enviar_email(subject, body_html, to_email, from_email, password, smtp_server
 
 def main():
     from_email = "daniel@redeabrigo.org"
-    password = "qydj rgyb ugao gsew"
+    password = "XXXXXX"
     smtp_server = "smtp.gmail.com"
     smtp_port = 587
 
