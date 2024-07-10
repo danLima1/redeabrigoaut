@@ -20,33 +20,24 @@ Siga os passos abaixo para configurar o projeto localmente:
 
 1. Clone o repositório:
     ```bash
-    git clone https://github.com/seu-usuario/cartinha-acolhedora.git
+    git clone https://github.com/seu-usuario/cartinha-acolhedora.git](https://github.com/danLima1/redeabrigoaut.git
     ```
 2. Navegue até o diretório do projeto:
     ```bash
     cd cartinha-acolhedora
     ```
-3. Instale as dependências:
-    ```bash
-    npm install
-    ```
+3. Instale as dependências.
+
 4. Configure as variáveis de ambiente:
     ```bash
     cp .env.example .env
     ```
     Edite o arquivo `.env` com suas configurações.
-
-5. Inicie a aplicação:
-    ```bash
-    npm start
-    ```
-
 ## Uso
 
-1. Acesse a aplicação no seu navegador em `http://localhost:3000`.
-2. Cadastre as cartas das crianças.
-3. Doadores podem se inscrever para realizar os desejos listados.
-4. Emails automáticos serão enviados para gerenciar todo o processo.
+1. abrigos se inscrevem com as cartinhas feitas pelas crincas.
+2. Doadores podem se inscrever para realizar os desejos listados.
+3. Emails automáticos serão enviados para gerenciar todo o processo.
 
 ## Contribuição
 
