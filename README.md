@@ -21,11 +21,11 @@ Siga os passos abaixo para configurar o projeto localmente:
 
 1. Clone o repositório:
     ```bash
-    git clone https://github.com/seu-usuario/cartinha-acolhedora.git](https://github.com/danLima1/redeabrigoaut.git
+    git clone git@github.com:danLima1/redeabrigoaut.git
     ```
 2. Navegue até o diretório do projeto:
     ```bash
-    cd cartinha-acolhedora
+    cd redeabrigoaut
     ```
 3. Instale as dependências.
 
