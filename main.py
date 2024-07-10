@@ -1,46 +1,54 @@
-import smtplib
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
-import pandas as pd
-import time
+import smtplib  # Biblioteca para enviar e-mails usando o protocolo SMTP
+from email.mime.multipart import MIMEMultipart  # Classe para criar e-mails com múltiplas partes (texto, anexos, etc.)
+from email.mime.text import MIMEText  # Classe para criar objetos de texto para o e-mail
+import pandas as pd  # Biblioteca para manipulação de dados, especialmente arquivos do Excel
+import time  # Biblioteca para manipulação de tempo (pausas, etc.)
 
+# Função para enviar e-mail
 def enviar_email(subject, body_html, to_email, from_email, password, smtp_server, smtp_port):
     try:
+        # Cria uma conexão com o servidor SMTP usando o contexto "with" para garantir que a conexão seja fechada corretamente
         with smtplib.SMTP(smtp_server, smtp_port) as server:
-            server.starttls()
-            server.login(from_email, password)
+            server.starttls()  # Inicia a conexão TLS (Transport Layer Security)
+            server.login(from_email, password)  # Faz login no servidor SMTP
 
+            # Cria uma mensagem de e-mail com múltiplas partes
             msg = MIMEMultipart()
-            msg['From'] = from_email
-            msg['To'] = to_email
-            msg['Subject'] = subject
-            msg.attach(MIMEText(body_html, 'html'))
+            msg['From'] = from_email  # Define o remetente do e-mail
+            msg['To'] = to_email  # Define o destinatário do e-mail
+            msg['Subject'] = subject  # Define o assunto do e-mail
+            msg.attach(MIMEText(body_html, 'html'))  # Anexa o corpo do e-mail como HTML
 
+            # Envia o e-mail
             server.sendmail(from_email, to_email, msg.as_string())
-            print(f"E-mail enviado para {to_email}")
+            print(f"E-mail enviado para {to_email}")  # Imprime mensagem de confirmação
     except Exception as e:
+        # Em caso de erro, imprime a mensagem de erro
         print(f"Erro ao enviar o e-mail para {to_email}: {e}")
 
+# Função principal
 def main():
-    from_email = "daniel@redeabrigo.org"
-    password = "qydj rgyb ugao gsew"
-    smtp_server = "smtp.gmail.com"
-    smtp_port = 587
+    from_email = "daniel@redeabrigo.org"  # E-mail do remetente
+    password = "qydj rgyb ugao gsew"  # Senha do e-mail do remetente
+    smtp_server = "smtp.gmail.com"  # Servidor SMTP do Gmail
+    smtp_port = 587  # Porta do servidor SMTP (587 para TLS)
 
     while True:
+        # Lê a tabela do Excel com os dados dos e-mails
         emails_df = pd.read_excel('emails.xlsx', dtype={'Email': str, 'Nome': str, 'Assunto': str, 'Corpo': str, 'Recebido': str})
 
+        # Itera sobre cada linha do DataFrame
         for index, row in emails_df.iterrows():
-            to_email = row['Email']
-            subject = row['Assunto']
-            body = row['Corpo']
-            recebido = row['Recebido']
-            nome = row.get('Nome', 'Prezado(a)')
+            to_email = row['Email']  # Endereço de e-mail do destinatário
+            subject = row['Assunto']  # Assunto do e-mail
+            body = row['Corpo']  # Corpo do e-mail
+            recebido = row['Recebido']  # Status de recebimento
+            nome = row.get('Nome', 'Prezado(a)')  # Nome do destinatário (ou 'Prezado(a)' se não especificado)
 
-            if pd.isna(to_email):
-                continue
+            if pd.isna(to_email):  # Verifica se o endereço de e-mail está ausente (NaN)
+                continue  # Pula para a próxima iteração
 
-            # Variáveis para substituir no HTML
+            # Variáveis para substituir no HTML do e-mail
             variables = {
                 'Nome': nome,
                 'nome_da_crianca': 'Maria',
@@ -229,7 +237,7 @@ a[x-apple-data-detectors] {
  </body>
 </html>'''
 
-                # Substituir placeholders com os valores reais 
+                # Substituir placeholders com os valores reais
                 for key, value in variables.items():
                     body_html =  body_html.replace(f'{{{key}}}', value)
                 enviar_email(subject, body_html, to_email, from_email, password, smtp_server, smtp_port)
