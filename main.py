@@ -14,7 +14,7 @@ def enviar_email(subject, body_html, to_email, from_email, password, smtp_server
 
             # Cria uma mensagem de e-mail com múltiplas partes
             msg = MIMEMultipart()
-            msg['From'] = from_email  # Define o remetente do e-mail
+            msg['From'] = f"{from_name} <{from_email}>"  # Define o remetente do e-mail
             msg['To'] = to_email  # Define o destinatário do e-mail
             msg['Subject'] = subject  # Define o assunto do e-mail
             msg.attach(MIMEText(body_html, 'html'))  # Anexa o corpo do e-mail como HTML
@@ -29,6 +29,7 @@ def enviar_email(subject, body_html, to_email, from_email, password, smtp_server
 # Função principal
 def main():
     from_email = "daniel@redeabrigo.org"  # E-mail do remetente
+    from_name = "Daniel Mendes" # Nome da pessoa para não aparecer apenas o e-mail no remetente
     password = "qydj rgyb ugao gsew"  # Senha do e-mail do remetente
     smtp_server = "smtp.gmail.com"  # Servidor SMTP do Gmail
     smtp_port = 587  # Porta do servidor SMTP (587 para TLS)
