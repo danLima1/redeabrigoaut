@@ -4,7 +4,8 @@ Bem-vindo ao projeto **Cartinha Acolhedora**! 🌟
 
 ## Sobre o Projeto
 
-O Cartinha Acolhedora é uma iniciativa dedicada a conectar crianças de abrigos com a magia do natal. As crianças escrevem cartas expressando seus desejos, e os doadores se inscrevem para realizar esses pedidos, trazendo alegria e esperança para essas crianças.
+Projeto que leva a magia do Natal para os abrigos dando a oportunidade para que qualquer pessoa seja o Papai Noel de uma criança ou adolescente acolhido. Mais do que um projeto de Natal, o Cartinha Acolhedora é um projeto que trabalha a autoestima das crianças e adolescentes acolhidos. Embora pareça algo simples, ter a oportunidade de pedir algo que você deseja nem sempre é a realidade dentro do acolhimento. Para muitas dessas crianças e adolescentes o Cartinha Acolhedora é a única oportunidade de pedir o que elas querem.
+
 
 Este projeto automatiza todo o processo, facilitando a correspondência entre os desejos das crianças e os doadores, garantindo que todos recebam as informações necessárias de forma rápida e eficiente. Emails são enviados automaticamente para gerenciar as inscrições dos doadores e a entrega dos presentes.
 
