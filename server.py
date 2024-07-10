@@ -1,18 +1,21 @@
-from flask import Flask, request, render_template_string
+from flask import Flask, request, render_template_string, url_for
 import pandas as pd
 import random
 
 app = Flask(__name__)
 
 # Função para preencher um e-mail aleatoriamente na planilha
-def fill_random_email(emails_df, user_email):
-    empty_email_indices = emails_df[emails_df['Email'].isna()].index.tolist()
+def preencher_email_aleatorio(emails_df, user_email, user_nome):
+    indices_emails_vazios = emails_df[emails_df['Email'].isna()].index.tolist()
 
-    if empty_email_indices:
-        random_index = random.choice(empty_email_indices)
-        emails_df.at[random_index, 'Email'] = user_email
+    if indices_emails_vazios:
+        indice_aleatorio = random.choice(indices_emails_vazios)
+        emails_df.at[indice_aleatorio, 'Email'] = user_email
+        emails_df.at[indice_aleatorio, 'Nome'] = user_nome
     else:
-        print("Nenhuma célula vazia na coluna 'Email' para preencher.")
+        # Adiciona uma nova linha caso não haja espaços vazios
+        new_row = {'Email': user_email, 'Nome': user_nome, 'Assunto': '', 'Corpo': '', 'Recebido': ''}
+        emails_df = emails_df.append(new_row, ignore_index=True)
 
     return emails_df
 
@@ -21,7 +24,7 @@ def fill_random_email(emails_df, user_email):
 def index():
     return render_template_string('''
     <!DOCTYPE html>
-    <html lang="en">
+    <html lang="pt-br">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -77,8 +80,11 @@ def index():
     <body>
         <div class="container">
             <img src="{{ url_for('static', filename='Cartinha-Acolhedora-300x146.png') }}" alt="Cartinha Acolhedora" class="logo">
-            <h2>Insira seu E-mail</h2>
+            <h2>Insira seu Nome e E-mail</h2>
             <form method="POST" action="/submit">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome" required>
+                </div>
                 <div class="form-group">
                     <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
                 </div>
@@ -99,18 +105,19 @@ def index():
 # Rota para processar o formulário
 @app.route('/submit', methods=['POST'])
 def submit():
+    user_nome = request.form['nome']
     user_email = request.form['email']
 
-    # Ler a planilha, garantindo que a coluna 'Email' seja tratada como string
-    emails_df = pd.read_excel('emails.xlsx', dtype={'Email': str, 'Assunto': str, 'Corpo': str, 'Recebido': str})
+    # Ler a planilha, garantindo que a coluna 'Email' e 'Nome' sejam tratadas como string
+    emails_df = pd.read_excel('emails.xlsx', dtype={'Email': str, 'Nome': str, 'Assunto': str, 'Corpo': str, 'Recebido': str})
 
-    # Preencher o e-mail aleatoriamente na planilha
-    emails_df = fill_random_email(emails_df, user_email)
+    # Preencher o e-mail e nome aleatoriamente na planilha
+    emails_df = preencher_email_aleatorio(emails_df, user_email, user_nome)
 
     # Salvar a planilha atualizada
     emails_df.to_excel('emails.xlsx', index=False)
 
-    return f"E-mail {user_email} adicionado à planilha com sucesso!"
+    return f"E-mail {user_email} e nome {user_nome} adicionados à planilha com sucesso!"
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run(debug=True)
