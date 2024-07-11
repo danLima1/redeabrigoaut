@@ -33,7 +33,7 @@ def enviar_email(subject, body_html, to_email, from_email, password, smtp_server
 def enviar_emails():
     from_email = "daniel@redeabrigo.org"  # E-mail do remetente
     from_name = "Daniel Mendes"   # Nome da pessoa para não aparecer apenas o e-mail no remetente
-    password = "qydj rgyb ugao gsew"  # Senha do e-mail do remetente
+    password = "XXXXXXXX"  # Senha do e-mail do remetente
     smtp_server = "smtp.gmail.com"  # Servidor SMTP do Gmail
     smtp_port = 587  # Porta do servidor SMTP (587 para TLS)
 
