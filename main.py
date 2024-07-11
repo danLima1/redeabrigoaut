@@ -36,7 +36,7 @@ def ler_html(file_path):
 def enviar_emails_iniciais():
     from_email = "daniel@redeabrigo.org"  # E-mail do remetente
     from_name = "Daniel Mendes"  # Nome do remetente
-    password = "qydj rgyb ugao gsew"  # Senha do e-mail do remetente
+    password = "XXXXXXXXX"  # Senha do e-mail do remetente
     smtp_server = "smtp.gmail.com"  # Servidor SMTP do Gmail
     smtp_port = 587  # Porta do servidor SMTP (587 para TLS)
 
