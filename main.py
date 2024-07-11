@@ -40,7 +40,7 @@ def enviar_emails_iniciais():
     smtp_server = "smtp.gmail.com"  # Servidor SMTP do Gmail
     smtp_port = 587  # Porta do servidor SMTP (587 para TLS)
 
-    html_inicial = ler_html('email1.html')  # Lê o conteúdo do arquivo HTML inicial
+    html_inicial = ler_html('modeloHtml/email1.html')  # Lê o conteúdo do arquivo HTML inicial
 
     # Lê a tabela do Excel com os dados dos e-mails
     emails_df = pd.read_excel('emails.xlsx', dtype={'Email': str, 'Nome': str, 'Assunto': str, 'Corpo': str, 'Recebido': str, 'ConfirmationID': str})
@@ -93,7 +93,7 @@ def enviar_emails_reenvio():
     smtp_server = "smtp.gmail.com"  # Servidor SMTP do Gmail
     smtp_port = 587  # Porta do servidor SMTP (587 para TLS)
 
-    html_reenvio = ler_html('email2.html')  # Lê o conteúdo do arquivo HTML de reenvio
+    html_reenvio = ler_html('modeloHtml/email2.html')  # Lê o conteúdo do arquivo HTML de reenvio
 
     # Lê a tabela do Excel com os dados dos e-mails
     emails_df = pd.read_excel('emails.xlsx', dtype={'Email': str, 'Nome': str, 'Assunto': str, 'Corpo': str, 'Recebido': str, 'ConfirmationID': str})
